@@ -47,22 +47,24 @@ export default function DashboardPage() {
   // -------------------------------
   if (loading) {
     return (
-      <div className="p-6 text-gray-600">
-        Loading exchange rates…
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent mb-4"></div>
+          <p className="text-slate-600 font-medium">Loading exchange rates…</p>
+        </div>
       </div>
     );
   }
 
   if (error || !data) {
     return (
-      <div className="p-6 space-y-3">
-        <p className="text-red-600">{error}</p>
-        <button
-          onClick={refresh}
-          className="rounded bg-black px-4 py-2 text-white"
-        >
-          Retry
-        </button>
+      <div className="flex items-center justify-center min-h-screen p-6">
+        <div className="card p-8 text-center space-y-4">
+          <p className="text-red-600 font-medium">{error}</p>
+          <button onClick={refresh} className="btn-primary">
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -71,25 +73,30 @@ export default function DashboardPage() {
   // Main render
   // -------------------------------
   return (
-    <main className="p-6 max-w-5xl mx-auto space-y-8">
+    <main className="p-6 max-w-6xl mx-auto space-y-8 py-12">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Savings Planner
-        </h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-blue-700 bg-clip-text text-transparent mb-2">
+            Savings Planner
+          </h1>
+          <p className="text-slate-600">Track your financial goals with ease</p>
+        </div>
 
         <div className="flex gap-3">
           <button
             onClick={refresh}
-            className="text-sm text-blue-600 hover:underline"
+            className="btn-secondary text-sm"
           >
+            <span className="inline-block mr-1">↻</span>
             Refresh Rates
           </button>
 
           <button
             onClick={() => setIsAddGoalOpen(true)}
-            className="rounded bg-black px-4 py-2 text-white"
+            className="btn-primary"
           >
+            <span className="inline-block mr-1">+</span>
             Add Goal
           </button>
         </div>
@@ -104,11 +111,19 @@ export default function DashboardPage() {
 
       {/* Goals grid */}
       {goals.length === 0 ? (
-        <div className="text-gray-600 text-center py-12">
-          No goals yet. Add your first savings goal.
+        <div className="card p-12 text-center">
+          <div className="mb-4 text-6xl">💰</div>
+          <h3 className="text-xl font-semibold text-slate-800 mb-2">No goals yet</h3>
+          <p className="text-slate-600 mb-6">Start tracking your financial goals today</p>
+          <button
+            onClick={() => setIsAddGoalOpen(true)}
+            className="btn-primary"
+          >
+            Create Your First Goal
+          </button>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {goals.map(goal => (
             <GoalCard
               key={goal.id}
@@ -122,27 +137,31 @@ export default function DashboardPage() {
       )}
 
       {/* Charts section */}
-      <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-gray-900">
-          Insights
-        </h2>
+      {goals.length > 0 && (
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold text-slate-800">
+            Insights
+          </h2>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-xl border p-4 bg-white">
-            <h3 className="mb-2 font-medium">
-              Savings Over Time
-            </h3>
-            <SavingsTimelineChart data={timelineData} />
-          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="card p-6">
+              <h3 className="mb-4 font-semibold text-lg text-slate-800 flex items-center">
+                <span className="mr-2">📈</span>
+                Savings Over Time
+              </h3>
+              <SavingsTimelineChart data={timelineData} />
+            </div>
 
-          <div className="rounded-xl border p-4 bg-white">
-            <h3 className="mb-2 font-medium">
-              Goal Distribution
-            </h3>
-            <GoalDistributionChart data={distributionData} />
+            <div className="card p-6">
+              <h3 className="mb-4 font-semibold text-lg text-slate-800 flex items-center">
+                <span className="mr-2">📊</span>
+                Goal Distribution
+              </h3>
+              <GoalDistributionChart data={distributionData} />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Add Goal Modal */}
       <AddGoalModal

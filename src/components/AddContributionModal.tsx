@@ -48,38 +48,58 @@ export function AddContributionModal({
     <Modal
       open={open}
       onClose={resetAndClose}
-      title={`Add Contribution — ${goalName}`}
+      title={`Add Contribution`}
     >
-      <div className="space-y-4">
-        {error && <p className="text-sm text-red-600">{error}</p>}
+      <div className="space-y-5">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <p className="text-sm text-blue-800 font-medium">
+            Contributing to: <span className="font-bold">{goalName}</span>
+          </p>
+        </div>
 
-        <input
-          type="number"
-          placeholder={`Amount (${currency})`}
-          className="w-full rounded border p-2"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+            {error}
+          </div>
+        )}
 
-        <input
-          type="date"
-          className="w-full rounded border p-2"
-          value={date}
-          onChange={e => setDate(e.target.value)}
-        />
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Amount ({currency})
+          </label>
+          <input
+            type="number"
+            placeholder={`Enter amount in ${currency}`}
+            className="input-field"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
 
-        <div className="flex justify-end gap-2">
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Contribution Date
+          </label>
+          <input
+            type="date"
+            className="input-field"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+          />
+        </div>
+
+        <div className="flex justify-end gap-3 pt-4">
           <button
             onClick={resetAndClose}
-            className="px-4 py-2 text-gray-600"
+            className="btn-secondary"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="rounded bg-black px-4 py-2 text-white"
+            className="btn-primary"
           >
-            Add
+            Add Contribution
           </button>
         </div>
       </div>

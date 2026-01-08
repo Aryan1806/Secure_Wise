@@ -11,13 +11,13 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-lg">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">{title}</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+      <div className="w-full max-w-md card p-8 shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-black"
+            className="text-slate-400 hover:text-slate-800 transition-colors duration-200 hover:rotate-90 transform text-2xl w-8 h-8 flex items-center justify-center rounded-lg hover:bg-slate-100"
           >
             ✕
           </button>

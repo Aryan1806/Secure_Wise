@@ -43,15 +43,16 @@ export function DashboardStats({
       : Math.min(100, Math.round((totalSaved / totalTarget) * 100));
 
   return (
-    <div className="rounded-xl border p-4 bg-gray-50">
-      <h2 className="text-lg font-semibold text-gray-900">
+    <div className="card p-6">
+      <h2 className="text-lg font-bold text-slate-800 mb-6 flex items-center">
+        <span className="mr-2">🎯</span>
         Overall Progress
       </h2>
 
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Stat label="Total Target" value={totalTarget} currency={displayCurrency} />
-        <Stat label="Total Saved" value={totalSaved} currency={displayCurrency} />
-        <Stat label="Completion" value={progress} suffix="%" />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <Stat label="Total Target" value={totalTarget} currency={displayCurrency} color="blue" />
+        <Stat label="Total Saved" value={totalSaved} currency={displayCurrency} color="emerald" />
+        <Stat label="Completion" value={progress} suffix="%" color="violet" />
       </div>
     </div>
   );
@@ -62,19 +63,29 @@ function Stat({
   value,
   currency,
   suffix,
+  color,
 }: {
   label: string;
   value: number;
   currency?: string;
   suffix?: string;
+  color: string;
 }) {
+  const colorClasses = {
+    blue: "from-blue-500 to-blue-600",
+    emerald: "from-emerald-500 to-green-600",
+    violet: "from-violet-500 to-purple-600",
+  };
+
   return (
-    <div>
-      <div className="text-sm text-gray-600">{label}</div>
-      <div className="text-xl font-semibold text-gray-900">
-        {value.toLocaleString()}
-        {currency && ` ${currency}`}
-        {suffix}
+    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-4 border border-slate-200/60">
+      <div className="relative z-10">
+        <div className="text-xs font-semibold text-slate-600 uppercase tracking-wide mb-2">{label}</div>
+        <div className={`text-3xl font-bold bg-gradient-to-r ${colorClasses[color as keyof typeof colorClasses]} bg-clip-text text-transparent`}>
+          {value.toLocaleString()}
+          {currency && <span className="text-xl ml-1">{currency}</span>}
+          {suffix}
+        </div>
       </div>
     </div>
   );

@@ -29,55 +29,56 @@ export function GoalCard({
   );
 
   return (
-    <div className="rounded-xl border p-4 shadow-sm bg-white flex flex-col">
+    <div className="card-hover p-6 flex flex-col">
       {/* Header */}
-      <div className="flex justify-between items-start">
-        <h3 className="text-lg font-semibold text-gray-900">
+      <div className="flex justify-between items-start mb-4">
+        <h3 className="text-xl font-bold text-slate-800">
           {goal.name}
         </h3>
-        <span className="text-xs rounded bg-gray-100 px-2 py-1 text-gray-600">
+        <span className="text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 px-3 py-1.5 text-blue-700 border border-blue-300/50">
           {goal.currency}
         </span>
       </div>
 
       {/* Target */}
-      <div className="mt-2 text-sm text-gray-700">
-        Target:{" "}
-        <strong>
-          {goal.targetAmount.toLocaleString()} {goal.currency}
-        </strong>
-        <div className="text-xs text-gray-500">
+      <div className="mb-3 space-y-1">
+        <div className="text-sm text-slate-600 font-medium">Target</div>
+        <div className="text-2xl font-bold text-slate-800">
+          {goal.targetAmount.toLocaleString()} <span className="text-lg text-slate-600">{goal.currency}</span>
+        </div>
+        <div className="text-xs text-slate-500">
           ≈ {convertedTarget.toLocaleString()} {displayCurrency}
         </div>
       </div>
 
       {/* Saved */}
-      <div className="mt-3 text-sm text-gray-700">
-        Saved:{" "}
-        <strong>
-          {savedAmount.toLocaleString()} {goal.currency}
-        </strong>
+      <div className="mb-4 space-y-1">
+        <div className="text-sm text-slate-600 font-medium">Current Savings</div>
+        <div className="text-2xl font-bold text-emerald-600">
+          {savedAmount.toLocaleString()} <span className="text-lg text-slate-600">{goal.currency}</span>
+        </div>
       </div>
 
       {/* Progress */}
-      <div className="mt-3">
-        <div className="h-2 w-full rounded bg-gray-200 overflow-hidden">
+      <div className="mt-auto space-y-2">
+        <div className="flex justify-between items-center">
+          <span className="text-xs font-semibold text-slate-600">Progress</span>
+          <span className="text-xs font-bold text-slate-800">{progress}%</span>
+        </div>
+        <div className="progress-bar">
           <div
-            className="h-full bg-green-500 transition-all"
+            className="progress-fill"
             style={{ width: `${progress}%` }}
           />
-        </div>
-        <div className="mt-1 text-xs text-gray-600">
-          {progress}% completed
         </div>
       </div>
 
       {/* Action */}
       <button
         onClick={() => onAddContribution(goal.id)}
-        className="mt-4 w-full rounded border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+        className="mt-5 w-full btn-secondary"
       >
-        Add Contribution
+        + Add Contribution
       </button>
     </div>
   );
