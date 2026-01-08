@@ -1,5 +1,5 @@
 // src/utils/calculations.ts
-import { Goal } from "@/types/goal";
+import { Goal } from "../types/goal";
 
 export function getTotalSaved(goal: Goal): number {
   return goal.contributions.reduce(

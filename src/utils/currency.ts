@@ -1,5 +1,5 @@
 // src/utils/currency.ts
-import { Currency } from "";
+import { Currency } from "../types/goal";
 
 export interface ExchangeRates {
   base: Currency;
