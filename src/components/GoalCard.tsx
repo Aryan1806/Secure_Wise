@@ -9,12 +9,14 @@ interface GoalCardProps {
   goal: Goal;
   exchangeRates: ExchangeRates;
   displayCurrency: "INR" | "USD" | "EUR";
+  onAddContribution: (goalId: string) => void;
 }
 
 export function GoalCard({
   goal,
   exchangeRates,
   displayCurrency,
+  onAddContribution,
 }: GoalCardProps) {
   const savedAmount = getTotalSaved(goal);
   const progress = getProgressPercentage(goal);
@@ -27,13 +29,13 @@ export function GoalCard({
   );
 
   return (
-    <div className="rounded-xl border p-4 shadow-sm bg-white">
+    <div className="rounded-xl border p-4 shadow-sm bg-white flex flex-col">
       {/* Header */}
       <div className="flex justify-between items-start">
         <h3 className="text-lg font-semibold text-gray-900">
           {goal.name}
         </h3>
-        <span className="text-sm text-gray-500">
+        <span className="text-xs rounded bg-gray-100 px-2 py-1 text-gray-600">
           {goal.currency}
         </span>
       </div>
@@ -57,7 +59,7 @@ export function GoalCard({
         </strong>
       </div>
 
-      {/* Progress bar */}
+      {/* Progress */}
       <div className="mt-3">
         <div className="h-2 w-full rounded bg-gray-200 overflow-hidden">
           <div
@@ -69,6 +71,14 @@ export function GoalCard({
           {progress}% completed
         </div>
       </div>
+
+      {/* Action */}
+      <button
+        onClick={() => onAddContribution(goal.id)}
+        className="mt-4 w-full rounded border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+      >
+        Add Contribution
+      </button>
     </div>
   );
 }
