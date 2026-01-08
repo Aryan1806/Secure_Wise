@@ -2,6 +2,15 @@
 
 import { useState } from "react";
 
+import {
+  buildSavingsTimeline,
+  buildGoalDistribution,
+} from "../src/utils/chartData";
+
+import { SavingsTimelineChart } from "../src/components/charts/SavingsTimelineChart";
+import { GoalDistributionChart } from "../src/components/charts/GoalDistributionChart";
+
+
 import { useGoals } from "../src/hooks/useGoals";
 import { useExchangeRate } from "../src/hooks/useExchange";
 
@@ -26,6 +35,12 @@ export default function DashboardPage() {
   const displayCurrency: "USD" | "INR" | "EUR" = "USD";
 
   const activeGoal = goals.find(goal => goal.id === activeGoalId);
+
+  // -------------------------------
+  // Derived chart data
+  // -------------------------------
+  const timelineData = buildSavingsTimeline(goals);
+  const distributionData = buildGoalDistribution(goals);
 
   // -------------------------------
   // Loading & error states
@@ -56,7 +71,7 @@ export default function DashboardPage() {
   // Main render
   // -------------------------------
   return (
-    <main className="p-6 max-w-5xl mx-auto space-y-6">
+    <main className="p-6 max-w-5xl mx-auto space-y-8">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-900">
@@ -105,6 +120,29 @@ export default function DashboardPage() {
           ))}
         </div>
       )}
+
+      {/* Charts section */}
+      <section className="space-y-6">
+        <h2 className="text-xl font-semibold text-gray-900">
+          Insights
+        </h2>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="rounded-xl border p-4 bg-white">
+            <h3 className="mb-2 font-medium">
+              Savings Over Time
+            </h3>
+            <SavingsTimelineChart data={timelineData} />
+          </div>
+
+          <div className="rounded-xl border p-4 bg-white">
+            <h3 className="mb-2 font-medium">
+              Goal Distribution
+            </h3>
+            <GoalDistributionChart data={distributionData} />
+          </div>
+        </div>
+      </section>
 
       {/* Add Goal Modal */}
       <AddGoalModal
