@@ -48,38 +48,55 @@ export function AddContributionModal({
     <Modal
       open={open}
       onClose={resetAndClose}
-      title={`Add Contribution — ${goalName}`}
+      title={`💰 Add Contribution — ${goalName}`}
     >
-      <div className="space-y-4">
-        {error && <p className="text-sm text-red-600">{error}</p>}
+      <div className="space-y-6">
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+            <p className="text-sm text-red-600 flex items-center gap-2">
+              <span>⚠️</span>
+              {error}
+            </p>
+          </div>
+        )}
 
-        <input
-          type="number"
-          placeholder={`Amount (${currency})`}
-          className="w-full rounded border p-2"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Contribution Amount
+          </label>
+          <input
+            type="number"
+            placeholder={`Enter amount in ${currency}`}
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
 
-        <input
-          type="date"
-          className="w-full rounded border p-2"
-          value={date}
-          onChange={e => setDate(e.target.value)}
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Date
+          </label>
+          <input
+            type="date"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+          />
+        </div>
 
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-3 pt-4">
           <button
             onClick={resetAndClose}
-            className="px-4 py-2 text-gray-600"
+            className="btn-secondary"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="rounded bg-black px-4 py-2 text-white"
+            className="btn-primary"
           >
-            Add
+            ➕ Add Contribution
           </button>
         </div>
       </div>

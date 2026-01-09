@@ -28,56 +28,95 @@ export function GoalCard({
     exchangeRates
   );
 
+  const getGoalIcon = (name: string) => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('house') || lowerName.includes('home')) return '🏠';
+    if (lowerName.includes('car') || lowerName.includes('vehicle')) return '🚗';
+    if (lowerName.includes('vacation') || lowerName.includes('travel')) return '✈️';
+    if (lowerName.includes('education') || lowerName.includes('school')) return '🎓';
+    if (lowerName.includes('wedding')) return '💍';
+    if (lowerName.includes('emergency')) return '🛡️';
+    return '🎯';
+  };
+
+  const getProgressColor = (progress: number) => {
+    if (progress >= 100) return 'from-green-400 to-green-600';
+    if (progress >= 75) return 'from-blue-400 to-blue-600';
+    if (progress >= 50) return 'from-yellow-400 to-yellow-600';
+    return 'from-red-400 to-red-600';
+  };
+
   return (
-    <div className="rounded-xl border p-4 shadow-sm bg-white flex flex-col">
+    <div className="card p-6 flex flex-col h-full hover:scale-105 transition-all duration-300">
       {/* Header */}
-      <div className="flex justify-between items-start">
-        <h3 className="text-lg font-semibold text-gray-900">
-          {goal.name}
-        </h3>
-        <span className="text-xs rounded bg-gray-100 px-2 py-1 text-gray-600">
-          {goal.currency}
-        </span>
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center gap-3">
+          <div className="text-3xl">{getGoalIcon(goal.name)}</div>
+          <div>
+            <h3 className="text-xl font-bold text-gray-900">
+              {goal.name}
+            </h3>
+            <span className="inline-block px-3 py-1 text-xs font-medium text-blue-800 rounded-full" style={{ background: 'linear-gradient(135deg, #dbeafe 0%, #faf5ff 100%)' }}>
+              {goal.currency}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Target */}
-      <div className="mt-2 text-sm text-gray-700">
-        Target:{" "}
-        <strong>
+      <div className="mb-4">
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
+          <span>🎯</span>
+          <span>Target Amount</span>
+        </div>
+        <div className="text-2xl font-bold text-gray-900">
           {goal.targetAmount.toLocaleString()} {goal.currency}
-        </strong>
-        <div className="text-xs text-gray-500">
+        </div>
+        <div className="text-sm text-gray-500">
           ≈ {convertedTarget.toLocaleString()} {displayCurrency}
         </div>
       </div>
 
       {/* Saved */}
-      <div className="mt-3 text-sm text-gray-700">
-        Saved:{" "}
-        <strong>
+      <div className="mb-4">
+        <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
+          <span>💰</span>
+          <span>Amount Saved</span>
+        </div>
+        <div className="text-xl font-semibold text-green-600">
           {savedAmount.toLocaleString()} {goal.currency}
-        </strong>
+        </div>
       </div>
 
       {/* Progress */}
-      <div className="mt-3">
-        <div className="h-2 w-full rounded bg-gray-200 overflow-hidden">
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-medium text-gray-700">Progress</span>
+          <span className="text-sm font-bold text-gray-900">{progress}%</span>
+        </div>
+        <div className="progress-bar">
           <div
-            className="h-full bg-green-500 transition-all"
-            style={{ width: `${progress}%` }}
+            className="progress-fill"
+            style={{
+              width: `${Math.min(progress, 100)}%`,
+              background: getProgressColor(progress)
+            }}
           />
         </div>
-        <div className="mt-1 text-xs text-gray-600">
-          {progress}% completed
-        </div>
+        {progress >= 100 && (
+          <div className="mt-2 text-sm text-green-600 font-medium flex items-center gap-1">
+            <span>🎉</span>
+            <span>Goal Achieved!</span>
+          </div>
+        )}
       </div>
 
       {/* Action */}
       <button
         onClick={() => onAddContribution(goal.id)}
-        className="mt-4 w-full rounded border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+        className="btn-primary w-full mt-auto"
       >
-        Add Contribution
+        ➕ Add Contribution
       </button>
     </div>
   );

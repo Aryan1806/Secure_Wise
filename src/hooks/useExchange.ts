@@ -31,7 +31,7 @@ export function useExchangeRate() {
 
       localStorage.setItem(CACHE_KEY, JSON.stringify(rates));
       setData(rates);
-    } catch (err) {
+    } catch {
       const cached = localStorage.getItem(CACHE_KEY);
       if (cached) {
         setData(JSON.parse(cached));

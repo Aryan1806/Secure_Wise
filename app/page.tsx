@@ -10,7 +10,6 @@ import {
 import { SavingsTimelineChart } from "../src/components/charts/SavingsTimelineChart";
 import { GoalDistributionChart } from "../src/components/charts/GoalDistributionChart";
 
-
 import { useGoals } from "../src/hooks/useGoals";
 import { useExchangeRate } from "../src/hooks/useExchange";
 
@@ -47,22 +46,28 @@ export default function DashboardPage() {
   // -------------------------------
   if (loading) {
     return (
-      <div className="p-6 text-gray-600">
-        Loading exchange rates…
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center animate-fade-in-up">
+          <div className="animate-pulse-custom text-6xl mb-4">💰</div>
+          <p className="text-gray-600 text-lg">Loading exchange rates…</p>
+        </div>
       </div>
     );
   }
 
   if (error || !data) {
     return (
-      <div className="p-6 space-y-3">
-        <p className="text-red-600">{error}</p>
-        <button
-          onClick={refresh}
-          className="rounded bg-black px-4 py-2 text-white"
-        >
-          Retry
-        </button>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="card p-8 text-center max-w-md animate-fade-in-up">
+          <div className="text-6xl mb-4">⚠️</div>
+          <p className="text-red-600 mb-4">{error}</p>
+          <button
+            onClick={refresh}
+            className="btn-primary"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -71,26 +76,32 @@ export default function DashboardPage() {
   // Main render
   // -------------------------------
   return (
-    <main className="p-6 max-w-5xl mx-auto space-y-8">
+    <main className="p-6 max-w-6xl mx-auto space-y-8 animate-fade-in-up">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Savings Planner
-        </h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 card p-6 text-white" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)' }}>
+        <div className="flex items-center gap-3">
+          <div className="text-4xl">🎯</div>
+          <div>
+            <h1 className="text-3xl font-bold">
+              Savings Planner
+            </h1>
+            <p className="text-blue-100">Track your financial goals with ease</p>
+          </div>
+        </div>
 
         <div className="flex gap-3">
           <button
             onClick={refresh}
-            className="text-sm text-blue-600 hover:underline"
+            className="btn-secondary text-gray-700"
           >
-            Refresh Rates
+            🔄 Refresh Rates
           </button>
 
           <button
             onClick={() => setIsAddGoalOpen(true)}
-            className="rounded bg-black px-4 py-2 text-white"
+            className="btn-primary"
           >
-            Add Goal
+            ➕ Add Goal
           </button>
         </div>
       </div>
@@ -104,41 +115,59 @@ export default function DashboardPage() {
 
       {/* Goals grid */}
       {goals.length === 0 ? (
-        <div className="text-gray-600 text-center py-12">
-          No goals yet. Add your first savings goal.
+        <div className="card p-12 text-center animate-fade-in-up">
+          <div className="text-6xl mb-4">🎯</div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No goals yet</h3>
+          <p className="text-gray-600 mb-6">Start your savings journey by adding your first goal!</p>
+          <button
+            onClick={() => setIsAddGoalOpen(true)}
+            className="btn-primary"
+          >
+            Create Your First Goal
+          </button>
         </div>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {goals.map(goal => (
-            <GoalCard
-              key={goal.id}
-              goal={goal}
-              exchangeRates={data}
-              displayCurrency={displayCurrency}
-              onAddContribution={setActiveGoalId}
-            />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {goals.map((goal, index) => (
+            <div key={goal.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+              <GoalCard
+                goal={goal}
+                exchangeRates={data}
+                displayCurrency={displayCurrency}
+                onAddContribution={setActiveGoalId}
+              />
+            </div>
           ))}
         </div>
       )}
 
       {/* Charts section */}
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold text-gray-900">
-          Insights
-        </h2>
+        <div className="flex items-center gap-3">
+          <div className="text-2xl">📊</div>
+          <h2 className="text-2xl font-semibold text-gray-900">
+            Insights & Analytics
+          </h2>
+        </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-xl border p-4 bg-white">
-            <h3 className="mb-2 font-medium">
-              Savings Over Time
-            </h3>
+          <div className="card p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="text-xl">📈</div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                Savings Over Time
+              </h3>
+            </div>
             <SavingsTimelineChart data={timelineData} />
           </div>
 
-          <div className="rounded-xl border p-4 bg-white">
-            <h3 className="mb-2 font-medium">
-              Goal Distribution
-            </h3>
+          <div className="card p-6">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="text-xl">📊</div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                Goal Distribution
+              </h3>
+            </div>
             <GoalDistributionChart data={distributionData} />
           </div>
         </div>

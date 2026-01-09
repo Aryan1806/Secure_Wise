@@ -17,12 +17,7 @@ function saveGoals(goals: Goal[]) {
 }
 
 export function useGoals() {
-  const [goals, setGoals] = useState<Goal[]>([]);
-
-  // Load once
-  useEffect(() => {
-    setGoals(loadGoals());
-  }, []);
+  const [goals, setGoals] = useState<Goal[]>(loadGoals);
 
   // Persist on change
   useEffect(() => {
