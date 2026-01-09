@@ -1,19 +1,122 @@
 @import "tailwindcss";
 
-/* ----------------------------------
-   Global resets & sensible defaults
------------------------------------ */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-html,
 body {
-  padding: 0;
-  margin: 0;
+  background: linear-gradient(to bottom right, #f8fafc, #dbeafe, #d1fae5);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  min-height: 100vh;
+}
+
+.btn-primary {
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
+  transform: translateY(-0.125rem);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: white;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+  transform: translateY(-0.125rem);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.card {
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 15px -3px rgba(148, 163, 184, 0.5);
+  transition: all 0.3s;
+}
+
+.card-hover {
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 15px -3px rgba(148, 163, 184, 0.5);
+  transition: all 0.3s;
+}
+
+.card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(148, 163, 184, 0.5);
+  transform: translateY(-0.25rem);
+}
+
+.input-field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid #e2e8f0;
+  background-color: white;
+  padding: 0.625rem 1rem;
+  color: #1e293b;
+  transition: all 0.2s;
+}
+
+.input-field::placeholder {
+  color: #94a3b8;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.progress-bar {
+  height: 0.75rem;
+  width: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #f1f5f9, #e2e8f0);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #10b981, #059669);
+  border-radius: 9999px;
+  transition: all 0.7s ease-out;
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.5);
 }
 
 * {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 /* ----------------------------------
    Typography defaults
 ----------------------------------- */
@@ -39,6 +142,8 @@ textarea {
   transition: all 0.2s ease;
 }
 
+=======
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
 input:focus,
 select:focus,
 textarea:focus,
@@ -47,15 +152,12 @@ button:focus {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-/* ----------------------------------
-   Buttons & disabled states
------------------------------------ */
-
 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
+<<<<<<< HEAD
 /* ----------------------------------
    Custom components
 ----------------------------------- */
@@ -91,16 +193,14 @@ button:disabled {
    Smooth UI feel
 ----------------------------------- */
 
+=======
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ----------------------------------
-   Scrollbar (optional but polished)
------------------------------------ */
-
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -109,6 +209,7 @@ button:disabled {
 }
 
 ::-webkit-scrollbar-thumb {
+<<<<<<< HEAD
   background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
@@ -147,4 +248,15 @@ button:disabled {
 
 .animate-pulse-custom {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+=======
+  background: linear-gradient(to bottom, #cbd5e1, #94a3b8);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #94a3b8, #64748b);
+  background-clip: padding-box;
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
 }

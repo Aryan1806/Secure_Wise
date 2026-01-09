@@ -48,6 +48,7 @@ export function AddContributionModal({
     <Modal
       open={open}
       onClose={resetAndClose}
+<<<<<<< HEAD
       title={`💰 Add Contribution — ${goalName}`}
     >
       <div className="space-y-6">
@@ -85,6 +86,48 @@ export function AddContributionModal({
           />
         </div>
 
+=======
+      title={`Add Contribution`}
+    >
+      <div className="space-y-5">
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <p className="text-sm text-blue-800 font-medium">
+            Contributing to: <span className="font-bold">{goalName}</span>
+          </p>
+        </div>
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+            {error}
+          </div>
+        )}
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Amount ({currency})
+          </label>
+          <input
+            type="number"
+            placeholder={`Enter amount in ${currency}`}
+            className="input-field"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Contribution Date
+          </label>
+          <input
+            type="date"
+            className="input-field"
+            value={date}
+            onChange={e => setDate(e.target.value)}
+          />
+        </div>
+
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
         <div className="flex justify-end gap-3 pt-4">
           <button
             onClick={resetAndClose}
@@ -96,7 +139,11 @@ export function AddContributionModal({
             onClick={handleSubmit}
             className="btn-primary"
           >
+<<<<<<< HEAD
             ➕ Add Contribution
+=======
+            Add Contribution
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
           </button>
         </div>
       </div>

@@ -47,6 +47,7 @@ export function GoalCard({
   };
 
   return (
+<<<<<<< HEAD
     <div className="card p-6 flex flex-col h-full hover:scale-105 transition-all duration-300">
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
@@ -73,11 +74,32 @@ export function GoalCard({
           {goal.targetAmount.toLocaleString()} {goal.currency}
         </div>
         <div className="text-sm text-gray-500">
+=======
+    <div className="card-hover p-6 flex flex-col">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-4">
+        <h3 className="text-xl font-bold text-slate-800">
+          {goal.name}
+        </h3>
+        <span className="text-xs font-semibold rounded-full bg-gradient-to-r from-blue-100 to-blue-200 px-3 py-1.5 text-blue-700 border border-blue-300/50">
+          {goal.currency}
+        </span>
+      </div>
+
+      {/* Target */}
+      <div className="mb-3 space-y-1">
+        <div className="text-sm text-slate-600 font-medium">Target</div>
+        <div className="text-2xl font-bold text-slate-800">
+          {goal.targetAmount.toLocaleString()} <span className="text-lg text-slate-600">{goal.currency}</span>
+        </div>
+        <div className="text-xs text-slate-500">
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
           ≈ {convertedTarget.toLocaleString()} {displayCurrency}
         </div>
       </div>
 
       {/* Saved */}
+<<<<<<< HEAD
       <div className="mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
           <span>💰</span>
@@ -85,18 +107,32 @@ export function GoalCard({
         </div>
         <div className="text-xl font-semibold text-green-600">
           {savedAmount.toLocaleString()} {goal.currency}
+=======
+      <div className="mb-4 space-y-1">
+        <div className="text-sm text-slate-600 font-medium">Current Savings</div>
+        <div className="text-2xl font-bold text-emerald-600">
+          {savedAmount.toLocaleString()} <span className="text-lg text-slate-600">{goal.currency}</span>
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
         </div>
       </div>
 
       {/* Progress */}
+<<<<<<< HEAD
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-gray-700">Progress</span>
           <span className="text-sm font-bold text-gray-900">{progress}%</span>
+=======
+      <div className="mt-auto space-y-2">
+        <div className="flex justify-between items-center">
+          <span className="text-xs font-semibold text-slate-600">Progress</span>
+          <span className="text-xs font-bold text-slate-800">{progress}%</span>
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
         </div>
         <div className="progress-bar">
           <div
             className="progress-fill"
+<<<<<<< HEAD
             style={{
               width: `${Math.min(progress, 100)}%`,
               background: getProgressColor(progress)
@@ -109,14 +145,25 @@ export function GoalCard({
             <span>Goal Achieved!</span>
           </div>
         )}
+=======
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
       </div>
 
       {/* Action */}
       <button
         onClick={() => onAddContribution(goal.id)}
+<<<<<<< HEAD
         className="btn-primary w-full mt-auto"
       >
         ➕ Add Contribution
+=======
+        className="mt-5 w-full btn-secondary"
+      >
+        + Add Contribution
+>>>>>>> 2b8a78b1032edaccf284f3a5ba4b778ab97a88a6
       </button>
     </div>
   );

@@ -44,47 +44,66 @@ export function AddGoalModal({
   }
 
   return (
-    <Modal open={open} onClose={resetAndClose} title="Add Goal">
-      <div className="space-y-4">
-        {error && <p className="text-sm text-red-600">{error}</p>}
+    <Modal open={open} onClose={resetAndClose} title="Create New Goal">
+      <div className="space-y-5">
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+            {error}
+          </div>
+        )}
 
-        <input
-          className="w-full rounded border p-2"
-          placeholder="Goal name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Goal Name
+          </label>
+          <input
+            className="input-field"
+            placeholder="e.g., New Car, Vacation, Emergency Fund"
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
 
-        <input
-          className="w-full rounded border p-2"
-          placeholder="Target amount"
-          type="number"
-          value={amount}
-          onChange={e => setAmount(e.target.value)}
-        />
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Target Amount
+          </label>
+          <input
+            className="input-field"
+            placeholder="10000"
+            type="number"
+            value={amount}
+            onChange={e => setAmount(e.target.value)}
+          />
+        </div>
 
-        <select
-          className="w-full rounded border p-2"
-          value={currency}
-          onChange={e => setCurrency(e.target.value as Currency)}
-        >
-          <option value="USD">USD</option>
-          <option value="INR">INR</option>
-          <option value="EUR">EUR</option>
-        </select>
+        <div>
+          <label className="block text-sm font-semibold text-slate-700 mb-2">
+            Currency
+          </label>
+          <select
+            className="input-field"
+            value={currency}
+            onChange={e => setCurrency(e.target.value as Currency)}
+          >
+            <option value="USD">USD - US Dollar</option>
+            <option value="INR">INR - Indian Rupee</option>
+            <option value="EUR">EUR - Euro</option>
+          </select>
+        </div>
 
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-3 pt-4">
           <button
             onClick={resetAndClose}
-            className="px-4 py-2 text-gray-600"
+            className="btn-secondary"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="rounded bg-black px-4 py-2 text-white"
+            className="btn-primary"
           >
-            Add Goal
+            Create Goal
           </button>
         </div>
       </div>
