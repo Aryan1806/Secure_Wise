@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "vercel-build": "next build"
   },
   "dependencies": {
+    "@vercel/build-utils": "^13.2.4",
+    "@vercel/next": "^4.15.10",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
