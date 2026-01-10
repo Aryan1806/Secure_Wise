@@ -1,8 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "env": {
-    "NEXT_PUBLIC_API_URL": "@next_public_api_url",
-    "NEXT_PUBLIC_EXCHANGE_RATE_API_URL": "@next_public_exchange_rate_api_url"
-  }
+  "outputDirectory": ".next"
 }
