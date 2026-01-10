@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { ExchangeRates } from "../utils/currency";
 
 const CACHE_KEY = "exchange_rates";
-const API_URL = "https://open.er-api.com/v6/latest/USD";
+const API_URL =
+  process.env.NEXT_PUBLIC_EXCHANGE_RATE_API_URL ??
+  "https://open.er-api.com/v6/latest/USD";
 
 export function useExchangeRate() {
   const [data, setData] = useState<ExchangeRates | null>(null);
