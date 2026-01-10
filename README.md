@@ -56,13 +56,11 @@ This project is fully configured for Vercel deployment.
   - Add the following environment variables in the Vercel project settings (Environment → Production):
     - `NEXT_PUBLIC_EXCHANGE_RATE_API_URL` — optional; defaults to the public https://open.er-api.com/v6/latest/USD endpoint
     - `NEXT_PUBLIC_API_URL` — optional placeholder if you later connect a backend API
-  - See `.env.example` for available configuration options
 4. **Deploy**: Click "Deploy" and Vercel will automatically build and deploy your app
 
 ### Pre-configured for Vercel
 
-✅ `vercel.json` configuration file  
-✅ `.env.example` for environment setup  
+✅ `vercel.json` configuration file   
 ✅ Next.js 16.1.1 with Turbopack for fast builds  
 ✅ TypeScript and ESLint configured  
 ✅ Tailwind CSS v4 for modern styling  
